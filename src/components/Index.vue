@@ -2,6 +2,7 @@
   <div class="Index">
     <h1>这是子组件</h1>
     <h1>文件修改测试git</h1>
+    <h1>git分支测试</h1>
     <li v-for="item in parentmsg" :key="item.id">
         {{item.text}}
     </li>
