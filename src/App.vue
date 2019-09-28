@@ -1,12 +1,23 @@
 <template>
   <div id="app">
-    <router-view/>
+      <!-- 顶部Header导航栏 -->
+      <NavBar></NavBar>
+      <!-- 中间路由Router-view区域 -->
+      <router-view />
+      <!-- 底部Tabbar导航栏 -->
+      <Tabbar></Tabbar>
   </div>
 </template>
 
 <script>
+import NavBar from './components/NavBar.vue';
+import Tabbar from './components/Tabbar.vue';
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+      NavBar: NavBar,
+      Tabbar: Tabbar
+  },
 }
 </script>
 
