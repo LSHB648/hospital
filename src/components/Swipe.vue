@@ -1,18 +1,16 @@
 <template>
-  <div class="swipe">
-    <div class="swipe">
+  <div class="Swipe">
       <van-swipe :autoplay="3000" indicator-color="white" :loop="true">
         <van-swipe-item v-for="(image, index) in images" :key="index" @click="onChange(index)">
           <img v-lazy="image"/>
         </van-swipe-item>
       </van-swipe>
-    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'swipe',
+  name: 'Swipe',
   data () {
     return {
       images: [
@@ -31,12 +29,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .swipe{
-    background: #000;
-    margin-bottom: 10px;
-    background-color: #fff;
+  .Swipe{
+    margin-top: -20px;
   }
   img{
-    width: 100%
+    width: 100%;
   }
 </style>

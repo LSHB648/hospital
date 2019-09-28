@@ -1,10 +1,10 @@
 <template>
     <div class="Tabbar">
-        <van-tabbar v-model="active" fixed border>
-            <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-            <van-tabbar-item icon="search">标签</van-tabbar-item>
-            <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-            <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+        <van-tabbar v-model="active" fixed border route>
+          <van-tabbar-item icon="home-o" to="/">首页</van-tabbar-item>    
+          <van-tabbar-item icon="search" to="/Swipe">搜索</van-tabbar-item>
+          <van-tabbar-item icon="friends-o" dot to="/">个人中心</van-tabbar-item>
+          <van-tabbar-item icon="setting-o" to="/">设置</van-tabbar-item>
         </van-tabbar>
     </div>
 </template>
@@ -25,5 +25,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>

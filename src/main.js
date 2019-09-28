@@ -7,7 +7,7 @@ import router from './router'
 Vue.config.productionTip = false
 
 /* 按需引入vant相关的组件 */
-import {Lazyload,Swipe,SwipeItem,Toast,NavBar,Tabbar, TabbarItem} from 'vant';
+import {Lazyload,Swipe,SwipeItem,Toast,NavBar,Tabbar, TabbarItem ,Grid, GridItem} from 'vant';
 
  /* 实现懒加载 */
 Vue.use(Lazyload, {
@@ -21,6 +21,8 @@ Vue.use(Toast);
 Vue.use(NavBar);
 /* 底部导航栏 */
 Vue.use(Tabbar).use(TabbarItem);
+/* 九宫格*/
+Vue.use(Grid).use(GridItem);
 
 
 /* eslint-disable no-new */

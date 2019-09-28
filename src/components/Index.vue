@@ -1,6 +1,8 @@
 <template>
   <div class="Index">
-    <h1>这是子组件</h1>
+    <Swipe></Swipe>
+    <Grid></Grid>
+   <!--  <h1>这是子组件</h1>
     <h1>文件修改测试git</h1>
     <h1>git分支测试</h1>
     <h1>主分支测试</h1>
@@ -9,32 +11,40 @@
     <li v-for="item in parentmsg" :key="item.id">
         {{item.text}}
     </li>
-    <button @click="SentMsgToParent">向父组件传值</button>
+    <button @click="SentMsgToParent">向父组件传值</button> -->
   </div>
 </template>
 
 <script>
+import Swipe from './Swipe.vue';
+import Grid from './Grid.vue';
 export default {
   name: 'Index',
-  props: ['parentmsg'],
+   components: {
+      Swipe: Swipe,
+      Grid: Grid
+  },
   data () {
     return {
-      childList: [
+     /*  childList: [
       { id: 0, text: '苹果' },
       { id: 1, text: '香蕉' },
       { id: 2, text: '西红时' }
-    ]
+    ] */
     }
   },
   methods: {
-    SentMsgToParent:function(){
+    /* SentMsgToParent:function(){
       this.$emit("ListenToChildEvent",this.childList);
-    }
+    } */
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .Index{
+    background-color:#ffffff;
+    margin-bottom: 50px;
+  }
 </style>

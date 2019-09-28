@@ -8,7 +8,7 @@
     <van-nav-bar
       title="标题"
       left-text="返回"
-      right-text="按钮"
+      right-text="登录"
       left-arrow
       fixed
       @click-left="onClickLeft"
@@ -42,7 +42,7 @@ export default {
       this.$toast('返回');
     },
     onClickRight() {
-      this.$toast('按钮');
+      this.$toast('登录成功');
     }
   }
 }

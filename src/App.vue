@@ -1,11 +1,15 @@
 <template>
-  <div id="app">
-      <!-- 顶部Header导航栏 -->
-      <NavBar></NavBar>
-      <!-- 中间路由Router-view区域 -->
-      <router-view />
-      <!-- 底部Tabbar导航栏 -->
-      <Tabbar></Tabbar>
+  <div class="app-container">
+      <div>
+        <!-- 顶部Header导航栏 -->
+        <NavBar></NavBar>
+        <!-- 中间路由Router-view区域 -->
+        <transition>
+          <router-view></router-view>
+        </transition>
+        <!-- 底部Tabbar导航栏 -->
+        <Tabbar></Tabbar>
+    </div>
   </div>
 </template>
 
@@ -29,5 +33,24 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.app-container{
+  overflow-x: hidden;/* 导航栏X轴浮动隐藏 */
+  position: relative;
+}
+.v-enter{
+  opacity: 0;
+  transform: translateX(100%);
+}
+.v-leave-to{
+  opacity: 0;
+  transform: translateX(-50%);
+  position: absolute;
+}
+
+
+.v-enter-active,
+.v-leave-acrive{
+  transition: all 0.45s ease;
 }
 </style>
