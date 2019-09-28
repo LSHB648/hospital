@@ -1,6 +1,6 @@
 # hospital
 
-> A Vue.js project
+> A Vue.js project by lushibao
 
 ## Build Setup
 

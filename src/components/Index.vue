@@ -9,6 +9,7 @@
     <li v-for="item in parentmsg" :key="item.id">
         {{item.text}}
     </li>
+    <button @click="SentMsgToParent">向父组件传值</button>
   </div>
 </template>
 
@@ -18,11 +19,17 @@ export default {
   props: ['parentmsg'],
   data () {
     return {
-
+      childList: [
+      { id: 0, text: '苹果' },
+      { id: 1, text: '香蕉' },
+      { id: 2, text: '西红时' }
+    ]
     }
   },
   methods: {
-    
+    SentMsgToParent:function(){
+      this.$emit("ListenToChildEvent",this.childList);
+    }
   }
 }
 </script>
