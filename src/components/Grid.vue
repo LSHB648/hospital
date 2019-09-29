@@ -1,12 +1,12 @@
 <template>
   <div class="Grid">
         <van-grid :column-num="3">
-            <van-grid-item icon="location" text="新闻资讯" />
-            <van-grid-item icon="browsing-history" text="医院介绍" />
-            <van-grid-item icon="fire" text="预约挂号" />
-            <van-grid-item icon="manager" text="个人中心" />
-            <van-grid-item icon="comment" text="留言评论" />
-            <van-grid-item icon="service" text="联系我们" />
+            <van-grid-item icon="location" text="新闻资讯" to="/NewListPage"/>
+            <van-grid-item icon="browsing-history" text="医院介绍" to="/HospitalPage"/>
+            <van-grid-item icon="fire" text="预约挂号" to="/NewListPage"/>
+            <van-grid-item icon="manager" text="个人中心" to="/NewListPage"/>
+            <van-grid-item icon="comment" text="留言评论" to="/CommentPage"/>
+            <van-grid-item icon="service" text="联系我们" to="/NewListPage"/>
         </van-grid>
   </div>
 </template>
@@ -27,4 +27,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>

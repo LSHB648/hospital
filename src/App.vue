@@ -5,7 +5,7 @@
         <NavBar></NavBar>
         <!-- 中间路由Router-view区域 -->
         <transition>
-          <router-view></router-view>
+          <router-view class="containercenter"></router-view>
         </transition>
         <!-- 底部Tabbar导航栏 -->
         <Tabbar></Tabbar>
@@ -38,6 +38,10 @@ export default {
   overflow-x: hidden;/* 导航栏X轴浮动隐藏 */
   position: relative;
 }
+.containercenter{
+  margin-top: 46px;
+  margin-bottom: 50px;
+}
 .v-enter{
   opacity: 0;
   transform: translateX(100%);
@@ -47,7 +51,6 @@ export default {
   transform: translateX(-50%);
   position: absolute;
 }
-
 
 .v-enter-active,
 .v-leave-acrive{

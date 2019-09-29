@@ -1,5 +1,5 @@
 <template>
-  <div class="Index">
+  <div class="IndexPage">
     <Swipe></Swipe>
     <Grid></Grid>
    <!--  <h1>这是子组件</h1>
@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import Swipe from './Swipe.vue';
-import Grid from './Grid.vue';
+import Swipe from '../components/Swipe.vue';
+import Grid from '../components/Grid.vue';
 export default {
-  name: 'Index',
+  name: 'IndexPage',
    components: {
       Swipe: Swipe,
       Grid: Grid
@@ -43,8 +43,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .Index{
+  .IndexPage{
     background-color:#ffffff;
-    margin-bottom: 50px;
+    overflow-x: hidden;
   }
 </style>
