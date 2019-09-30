@@ -12,6 +12,14 @@
         {{item.text}}
     </li>
     <button @click="SentMsgToParent">向父组件传值</button> -->
+    <div>
+      <div class="addBtn" @click="handleAdd()">count++</div>
+      <div class="addBtn" @click="handleSub()">count--</div>
+      <div class="addBtn" @click="handleAddAsy()">异步count++（1S后执行）</div>
+      <div class="addBtn" @click="handleSubAsy()">异步count--（1S后执行）</div>
+      <h2>computed中通过state获取到的count:{{count}}</h2>
+      <h2>computed中通过getters获取到计算后的count：{{getCount}}</h2>
+    </div>
   </div>
 </template>
 
@@ -33,18 +41,76 @@ export default {
     ] */
     }
   },
+  computed: {
+    count() {
+      return this.$store.state.count;
+    },
+   
+    getCount() {
+      return this.$store.getters.getterCount;
+    }
+  
+  },
+  //监听count的变化
+  watch: {
+    count: { 
+        function(val, oldVal) {console.log(val,oldVal)},
+        deep: true
+    }
+  },
+
   methods: {
-    /* SentMsgToParent:function(){
-      this.$emit("ListenToChildEvent",this.childList);
-    } */
+    handleAdd() {
+      this.$store.commit("addCount", {
+        num: 2
+      });
+      console.log(
+        "state中的count为：" + this.$store.state.count,
+        "getters中的count为：" + this.$store.getters.getterCount
+      );
+    },
+    handleSub() {
+      this.$store.commit("subCount", {
+        num: 2
+      });
+      console.log(
+        "state中的count为：" + this.$store.state.count,
+        "getters中的count为：" + this.$store.getters.getterCount
+      );
+    },
+   
+    handleAddAsy() {
+      this.$store.dispatch("addCountAsy");
+    },
+    handleSubAsy() {
+      this.$store.dispatch("subCountAsy");
+    },
+    mounted() {
+      console.log(this.$qs);
+      console.log(this.$axios);
+      console.log(this);
+    }
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="less" scoped>
   .IndexPage{
-    background-color:#ffffff;
+    background-color:#faf1f157;
     overflow-x: hidden;
   }
+ 
+  .addBtn {
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 16px;
+    background-color: rgb(239, 241, 241);
+    margin: 50px auto;
+    cursor: pointer;
+  }
+
 </style>

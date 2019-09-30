@@ -28,11 +28,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="less"scoped>
   .Swipe{
-    margin-top: -20px;
-  }
-  img{
-    width: 100%;
+    margin-top: 0px;
+    background: rgb(255, 255, 255);
+    img{
+      width: 100%;
+    }
   }
 </style>

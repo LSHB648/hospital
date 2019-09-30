@@ -4,11 +4,26 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import Vuex from 'vuex'
+import store from  './store/store'
+
+Vue.use(Vuex)
 Vue.config.productionTip = false
+
+/* 按需导入mint-ui相关组件 */
+import { Navbar, TabItem } from 'mint-ui';
+import 'mint-ui/lib/style.css';
+Vue.component('mt-navbar', Navbar);
+Vue.component('mt-tab-item', TabItem);
+
+/* 或写为
+ * Vue.use(Button)
+ * Vue.use(Cell)
+ */
 
 /* 按需引入vant相关的组件 */
 import {Lazyload,Swipe,SwipeItem,Toast,NavBar,Tabbar, TabbarItem ,Grid, GridItem,Card,Tag,Tab, Tabs,
-NoticeBar,Button,Rate,Pagination} from 'vant';
+NoticeBar,Button,Rate,Pagination,PullRefresh, Image} from 'vant';
 
  /* 实现懒加载 */
 Vue.use(Lazyload, {
@@ -38,11 +53,16 @@ Vue.use(Button);
 Vue.use(Rate);
 /* 分页 */
 Vue.use(Pagination);
+/* 下拉刷新 */
+Vue.use(PullRefresh);
+/* 图片 */
+Vue.use(Image);
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

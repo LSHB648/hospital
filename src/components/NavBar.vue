@@ -7,12 +7,13 @@
     </li> -->
     <van-nav-bar
       title="医院在线挂号系统"
-      right-text="登录"
+      v-bind:right-text='Login'
       left-arrow
       v-bind:left-arrow="leftshow"
       fixed
       @click-left="onClickLeft"
       @click-right="onClickRight"
+      id="navbar"
     />
   </div>
 </template>
@@ -32,7 +33,8 @@ export default {
       { id: 2, text: '随便其它什么人吃的东西' }
     ],
     FatherList:[] */
-    leftshow:false
+    leftshow:false,
+    Login:'登录'
     }
   },
   methods: {
@@ -44,7 +46,9 @@ export default {
       this.$router.go(-1);
     },
     onClickRight() {
-      this.$toast('登录成功');
+      this.$toast('登录');
+      this.$router.push({name: 'LoginPage'});
+      this.Login='';//登录界面设置登录按钮不可见
     }
   },
   watch:{

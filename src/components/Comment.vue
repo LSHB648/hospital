@@ -90,7 +90,6 @@ export default {
         name:'',
         content:''
       }
-
     }
   }
 }
