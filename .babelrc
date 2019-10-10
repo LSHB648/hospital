@@ -21,5 +21,6 @@
       "style": true
       }
     ]
-  ]
+  ],
+  "ignore": ["./src/assets/lib/mui/js/mui.js"]
 }
