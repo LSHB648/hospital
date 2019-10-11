@@ -46,18 +46,16 @@ export default {
              Name: "",
              PassWord: "",
              Type: ""
-            };
+            }
             Logmsg.Name=that.msg.Name;
             Logmsg.Type=that.msg.Type;
             Logmsg.PassWord= Base64.encode(that.msg.PassWord);
-            var newMsg=JSON.stringify(Logmsg);
-            ws.send(newMsg);
-            console.log(newMsg);
-         }; 
-         ws.onmessage = function (e) { 
+            var newmsg=JSON.stringify(Logmsg);
+            ws.send(newmsg);
+        }; 
+        ws.onmessage = function (e) {
             var received_msg = e.data;
             var mess = JSON.parse(received_msg);  
-            console.log(mess);
             if(mess.Code===200){
               that.$toast('登录成功');
               that.msg.Name='';
@@ -67,13 +65,13 @@ export default {
               that.msg.Name='';
               that.msg.PassWord='';
             }
-         };
-         ws.onclose = (e) =>{
+        };
+        ws.onclose = (e) =>{
             console.log("服务器关闭");
-         };
-         ws.onerror = () =>{
+        };
+        ws.onerror = () =>{
             console.log("连接出错");
-         };
+        };
       } 
       
   }
