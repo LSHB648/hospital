@@ -48,8 +48,14 @@ export default {
     onClickRight() {
       this.$toast('登录');
       this.$router.push({name: 'LoginPage'});
-      this.Login='';//登录界面设置登录按钮不可见
-    }
+      /*this.Login=''; 登录界面设置登录按钮不可见 */
+      this.Login=this.$store.getters.getterCookie; 
+    },
+    /* isCookie(){
+      if(this.$store.state.loginCookie){
+        this.Login=this.$store.state.loginCookie;
+      }
+    } */
   },
   watch:{
     /* 监听路由设置首页返回按钮不可见 */
@@ -60,6 +66,7 @@ export default {
         this.leftshow=true;
       }
     }
+    
 },
 }
 

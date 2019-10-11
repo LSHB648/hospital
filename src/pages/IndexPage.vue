@@ -12,14 +12,15 @@
         {{item.text}}
     </li>
     <button @click="SentMsgToParent">向父组件传值</button> -->
-    <div>
+    <!-- <div>
       <div class="addBtn" @click="handleAdd()">count++</div>
       <div class="addBtn" @click="handleSub()">count--</div>
       <div class="addBtn" @click="handleAddAsy()">异步count++（1S后执行）</div>
       <div class="addBtn" @click="handleSubAsy()">异步count--（1S后执行）</div>
       <h2>computed中通过state获取到的count:{{count}}</h2>
       <h2>computed中通过getters获取到计算后的count：{{getCount}}</h2>
-    </div>
+    </div> -->
+    <div>{{this.$store.getters.getterCookie}}</div>
   </div>
 </template>
 
@@ -42,25 +43,25 @@ export default {
     }
   },
   computed: {
-    count() {
+   /*  count() {
       return this.$store.state.count;
     },
    
     getCount() {
       return this.$store.getters.getterCount;
-    }
+    } */
   
   },
   //监听count的变化
   watch: {
-    count: { 
+    /* count: { 
         function(val, oldVal) {console.log(val,oldVal)},
         deep: true
-    }
+    } */
   },
 
   methods: {
-    handleAdd() {
+   /*  handleAdd() {
       this.$store.commit("addCount", {
         num: 2
       });
@@ -89,7 +90,7 @@ export default {
       console.log(this.$qs);
       console.log(this.$axios);
       console.log(this);
-    }
+    } */
 
   }
 }

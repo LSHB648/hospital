@@ -10,9 +10,9 @@
     />
     <div class="mui-content">
         <form class="mui-input-group">
-            <mt-field label="用户名" placeholder="请输入用户名" v-model="regMsg.Name"></mt-field>
-            <mt-field label="密码" placeholder="请输入密码" type="password" v-model="regMsg.PassWord"></mt-field>
-            <mt-field label="真实姓名" placeholder="请输入真实姓名" v-model="regMsg.RealName"></mt-field>
+            <mt-field label="用户名" placeholder="请输入用户名" v-model="msg.Name"></mt-field>
+            <mt-field label="密码" placeholder="请输入密码" type="password" v-model="msg.PassWord"></mt-field>
+            <mt-field label="真实姓名" placeholder="请输入真实姓名" v-model="msg.RealName"></mt-field>
         </form>
         <!-- /*注意：注册按钮不能和账号密码输入框放在一个form里面*/ -->
         <div class="mui-content-padded" align="center">
@@ -28,13 +28,10 @@ export default {
   data () {
     return {
       "leftShow":true,
-      regMsg:{
-          Action: "RegisterUser",
+        msg:{
           Name: "",
           PassWord: "",
-          Type: "Patient",
           RealName: "",
-          Cookie: "" 
       }
     }
   },
@@ -44,16 +41,25 @@ export default {
       this.$router.go(-1);
     },
     RegUser() {
-      console.log(this.regMsg);
       let that=this;
       var ws = new WebSocket("ws://192.168.252.128:8080");
       ws.onopen = function(){
-          that.regMsg.PassWord= Base64.encode(that.regMsg.PassWord);
-          var regMsg=JSON.stringify(that.regMsg);
+          var regMsg={
+               Action: "RegisterUser",
+               Name: "",
+               PassWord: "",
+               Type: "Patient",
+               RealName: "",
+               Cookie: "" 
+          };
+          regMsg.Name=that.msg.Name;
+          regMsg.PassWord= Base64.encode(that.msg.PassWord);
+          regMsg.RealName=that.msg.RealName;
+          var newMsg=JSON.stringify(regMsg);
           /* console.log(regMsg);
           alert("数据发送中..."); */
            // Web Socket 已连接上，使用 send() 方法发送数据
-          ws.send(regMsg);
+          ws.send(newMsg);
        }; 
        ws.onmessage = function (e) { 
           var received_msg = e.data;

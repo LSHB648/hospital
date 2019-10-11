@@ -46,7 +46,7 @@ export default {
              Name: "",
              PassWord: "",
              Type: ""
-            }
+            };
             Logmsg.Name=that.msg.Name;
             Logmsg.Type=that.msg.Type;
             Logmsg.PassWord= Base64.encode(that.msg.PassWord);
@@ -55,9 +55,12 @@ export default {
         }; 
         ws.onmessage = function (e) {
             var received_msg = e.data;
-            var mess = JSON.parse(received_msg);  
-            if(mess.Code===200){
+            var mess = JSON.parse(received_msg); 
+            console.log(mess);
+            if(mess.Category="Response"&&mess.Code===200){
               that.$toast('登录成功');
+              that.$router.push({name: 'IndexPage'});
+              that.$store.commit('saveCookie',mess.Cookie);
               that.msg.Name='';
               that.msg.PassWord='';
             }else{
@@ -67,10 +70,10 @@ export default {
             }
         };
         ws.onclose = (e) =>{
-            console.log("服务器关闭");
+          console.log("服务器关闭");
         };
         ws.onerror = () =>{
-            console.log("连接出错");
+          console.log("连接出错");
         };
       } 
       

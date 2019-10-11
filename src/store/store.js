@@ -7,12 +7,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     count: 0,
-    age: 0
+    age: 0,
+    loginCookie:'', /* 保存当前登录用户的Cookie */
+
   },
   getters: {
-    getterAge(state) {
-      console.log(state);
-      return state.age;
+    getterCookie(state) {
+      console.log(state.loginCookie);
+      return state.loginCookie;
     }
   },
   mutations: {
@@ -21,6 +23,9 @@ export default new Vuex.Store({
     },
     subCount(state, obj) {
       return state.count -= obj.num;
+    },
+    saveCookie(state,Cookie){  //传多个参数一般为对象obj
+      state.loginCookie=Cookie;
     }
   },
   actions: {
