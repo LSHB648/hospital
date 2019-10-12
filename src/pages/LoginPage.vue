@@ -60,7 +60,7 @@ export default {
             if(mess.Category="Response"&&mess.Code===200){
               that.$toast('登录成功');
               that.$router.push({name: 'IndexPage'});
-              that.$store.commit('saveCookie',mess.Cookie);
+              that.$store.commit('saveCookie',mess.Cookie); 
               that.msg.Name='';
               that.msg.PassWord='';
             }else{

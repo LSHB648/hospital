@@ -43,55 +43,41 @@ export default {
     }
   },
   computed: {
-   /*  count() {
-      return this.$store.state.count;
-    },
-   
-    getCount() {
-      return this.$store.getters.getterCount;
-    } */
   
   },
   //监听count的变化
   watch: {
-    /* count: { 
-        function(val, oldVal) {console.log(val,oldVal)},
-        deep: true
-    } */
+
   },
-
+  created () {
+    this.GetUser();
+  },
   methods: {
-   /*  handleAdd() {
-      this.$store.commit("addCount", {
-        num: 2
-      });
-      console.log(
-        "state中的count为：" + this.$store.state.count,
-        "getters中的count为：" + this.$store.getters.getterCount
-      );
-    },
-    handleSub() {
-      this.$store.commit("subCount", {
-        num: 2
-      });
-      console.log(
-        "state中的count为：" + this.$store.state.count,
-        "getters中的count为：" + this.$store.getters.getterCount
-      );
-    },
-   
-    handleAddAsy() {
-      this.$store.dispatch("addCountAsy");
-    },
-    handleSubAsy() {
-      this.$store.dispatch("subCountAsy");
-    },
-    mounted() {
-      console.log(this.$qs);
-      console.log(this.$axios);
-      console.log(this);
-    } */
-
+    GetUser(){
+      let that=this;
+      var ws = new WebSocket('ws://192.168.252.128:8080');
+      ws.onopen = function(){
+          var GetUserinfo={
+            Action: "GetUser",
+            Cookie: that.$store.state.loginCookie,
+          };
+          var newmsg=JSON.stringify(GetUserinfo);
+          console.log(newmsg);
+          ws.send(newmsg);
+      }; 
+      ws.onmessage = function (e) {
+          var received_msg = e.data;
+          var mess = JSON.parse(received_msg); 
+          console.log(mess);
+          that.$store.commit('saveUserinfo',mess.User);
+      };
+      ws.onclose = (e) =>{
+        console.log("服务器关闭");
+      };
+      ws.onerror = () =>{
+        console.log("连接出错");
+      };
+    }
   }
 }
 </script>

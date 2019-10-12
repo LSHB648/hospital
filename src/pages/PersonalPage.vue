@@ -11,7 +11,7 @@
           lazy-load
           src="../../static/images/2.jpg"
         />
-        <p>lushibao</p>
+        <p>{{this.$store.state.Userinfo.Name}}</p>
       </div>
     </div>
     <van-row class="user-links">
@@ -42,6 +42,7 @@
       <van-cell icon="gold-coin-o" title="我的优惠券" is-link />
       <van-cell icon="gift-o" title="我收到的消息" is-link />
     </van-cell-group>
+    <button id='LoginOut' type="button" data-loading-text="提交中"  class="mui-btn mui-btn-block mui-btn-danger" @click="LoginOut">退出登录</button>
   </div>
 </template>
 
@@ -62,7 +63,37 @@ export default {
     }
   },
   methods: {
-   
+    LoginOut() {
+      let that=this;
+      var ws = new WebSocket('ws://192.168.252.128:8080');
+      ws.onopen = function(){
+          var LogOut={
+            Action: "LogOut",
+            Cookie: that.$store.state.loginCookie,
+          };
+          var newmsg=JSON.stringify(LogOut);
+          console.log(newmsg);
+          ws.send(newmsg);
+      }; 
+      ws.onmessage = function (e) {
+          var received_msg = e.data;
+          var mess = JSON.parse(received_msg); 
+          console.log(mess);
+          if(mess.Category="Response"&&mess.Code===200){
+            that.$toast('退出成功');
+            that.$router.push({name: 'LoginPage'});
+            that.$store.state.loginCookie='';
+          }else{
+            that.$toast(mess.Message);
+          } 
+      };
+      ws.onclose = (e) =>{
+        console.log("服务器关闭");
+      };
+      ws.onerror = () =>{
+        console.log("连接出错");
+      };
+    }
   }
 }
 </script>
@@ -105,6 +136,7 @@ export default {
       color: #cccccc;
       margin-top: 0px;
       margin-left: -50%;
+      text-align: center;
     }
     /* img{
       display:block;

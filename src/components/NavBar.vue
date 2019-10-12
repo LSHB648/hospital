@@ -7,14 +7,20 @@
     </li> -->
     <van-nav-bar
       title="医院在线挂号系统"
-      v-bind:right-text='Login'
       left-arrow
       v-bind:left-arrow="leftshow"
       fixed
       @click-left="onClickLeft"
       @click-right="onClickRight"
       id="navbar"
-    />
+    >
+    <a slot="right">{{Login}}</a>
+    <div slot="right" v-if='this.$store.state.loginCookie'>
+      {{this.$store.state.Userinfo.Name}}
+    </div>
+    <div slot="right" v-else>
+    </div>
+    </van-nav-bar>
   </div>
 </template>
 
@@ -34,7 +40,8 @@ export default {
     ],
     FatherList:[] */
     leftshow:false,
-    Login:'登录'
+    Login:'登录',
+    Loginout:'退出'
     }
   },
   methods: {
@@ -46,11 +53,16 @@ export default {
       this.$router.go(-1);
     },
     onClickRight() {
-      this.$toast('登录');
-      this.$router.push({name: 'LoginPage'});
+      if(this.$store.getters.getterCookie){
+        this.$router.push({name: 'PersonalPage'});
+      }else{
+        this.$toast('登录');
+        this.$router.push({name: 'LoginPage'});
+      }
+      
       /*this.Login=''; 登录界面设置登录按钮不可见 */
-      this.Login=this.$store.getters.getterCookie; 
-    },
+      /* this.Login=this.$store.getters.getterCookie; */
+    }
     /* isCookie(){
       if(this.$store.state.loginCookie){
         this.Login=this.$store.state.loginCookie;
@@ -66,8 +78,7 @@ export default {
         this.leftshow=true;
       }
     }
-    
-},
+  },
 }
 
 </script>
