@@ -56,7 +56,6 @@ export default {
         ws.onmessage = function (e) {
             var received_msg = e.data;
             var mess = JSON.parse(received_msg); 
-            console.log(mess);
             if(mess.Category="Response"&&mess.Code===200){
               that.$toast('登录成功');
               that.$router.push({name: 'IndexPage'});

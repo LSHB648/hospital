@@ -9,9 +9,14 @@
           round
           fit="contain"
           lazy-load
-          src="../../static/images/2.jpg"
+          src="../../../static/images/2.jpg"
         />
-        <p>{{this.$store.state.Userinfo.Name}}</p>
+        <p v-if='this.$store.state.loginCookie'>
+          {{Name}}
+        </p>
+        <p v-else>
+          未登录..
+        </p>
       </div>
     </div>
     <van-row class="user-links">
@@ -34,7 +39,7 @@
     </van-row>
 
     <van-cell-group class="user-group">
-      <van-cell icon="points" title="我的信息" is-link />
+      <van-cell icon="points" title="我的信息" is-link @click="toUserInfo"/>
     </van-cell-group>
 
     <van-cell-group>
@@ -42,7 +47,10 @@
       <van-cell icon="gold-coin-o" title="我的优惠券" is-link />
       <van-cell icon="gift-o" title="我收到的消息" is-link />
     </van-cell-group>
-    <button id='LoginOut' type="button" data-loading-text="提交中"  class="mui-btn mui-btn-block mui-btn-danger" @click="LoginOut">退出登录</button>
+    <div v-show='this.$store.state.loginCookie'>
+      <button id='LoginOut' type="button" data-loading-text="提交中"  class="mui-btn mui-btn-block mui-btn-danger" @click="LoginOut">退出登录</button>
+    </div>
+    
   </div>
 </template>
 
@@ -59,7 +67,7 @@ export default {
   },
   data () {
     return {
-     
+     Name:this.$store.state.Userinfo.Name
     }
   },
   methods: {
@@ -93,6 +101,9 @@ export default {
       ws.onerror = () =>{
         console.log("连接出错");
       };
+    },
+    toUserInfo() {
+      this.$router.push({name: 'UserInfo'});
     }
   }
 }
@@ -119,7 +130,7 @@ export default {
   width: 100%;
   height: 53vw;
   display: block;
-  background-image:url('../../static/images/1.jpg');
+  background-image:url('../../../static/images/1.jpg');
   background-size:100% 100%;
   background-repeat:no-repeat;
   background-color:#cccccc;

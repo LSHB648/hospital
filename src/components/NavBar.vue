@@ -16,16 +16,16 @@
     >
     <a slot="right">{{Login}}</a>
     <div slot="right" v-if='this.$store.state.loginCookie'>
-      {{this.$store.state.Userinfo.Name}}
+      <a>{{this.$store.state.Userinfo.Name}}</a>
     </div>
-    <div slot="right" v-else>
+    <div slot="right" v-else-if>
     </div>
     </van-nav-bar>
   </div>
 </template>
 
 <script>
-import IndexPage from '../pages/IndexPage.vue';
+import IndexPage from '../pages/Patient/IndexPage.vue';
 export default {
   name: 'NavBar',
   components: {
@@ -41,7 +41,7 @@ export default {
     FatherList:[] */
     leftshow:false,
     Login:'登录',
-    Loginout:'退出'
+    Loginout:'退出',
     }
   },
   methods: {
@@ -84,10 +84,11 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang='less' scoped>
   .van-nav-bar__arrow {
     min-width: 1em;
     font-size: 16px;
     /* display: none; */
   }
+  a:hover{color:red;}
 </style>

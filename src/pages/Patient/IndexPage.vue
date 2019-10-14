@@ -20,13 +20,12 @@
       <h2>computed中通过state获取到的count:{{count}}</h2>
       <h2>computed中通过getters获取到计算后的count：{{getCount}}</h2>
     </div> -->
-    <div>{{this.$store.getters.getterCookie}}</div>
   </div>
 </template>
 
 <script>
-import Swipe from '../components/Swipe.vue';
-import Grid from '../components/Grid.vue';
+import Swipe from '../../components/Swipe.vue';
+import Grid from '../../components/Grid.vue';
 export default {
   name: 'IndexPage',
    components: {
@@ -40,6 +39,7 @@ export default {
       { id: 1, text: '香蕉' },
       { id: 2, text: '西红时' }
     ] */
+
     }
   },
   computed: {
@@ -62,13 +62,11 @@ export default {
             Cookie: that.$store.state.loginCookie,
           };
           var newmsg=JSON.stringify(GetUserinfo);
-          console.log(newmsg);
           ws.send(newmsg);
       }; 
       ws.onmessage = function (e) {
           var received_msg = e.data;
           var mess = JSON.parse(received_msg); 
-          console.log(mess);
           that.$store.commit('saveUserinfo',mess.User);
       };
       ws.onclose = (e) =>{

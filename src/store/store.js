@@ -15,7 +15,7 @@ export default new Vuex.Store({
       Type:'',
       RealName:'',
       Description:'',
-      CardNumber:'',
+      CardNumber:''
     }
   },
   getters: {
@@ -30,10 +30,10 @@ export default new Vuex.Store({
     subCount(state, obj) {
       return state.count -= obj.num;
     },
-    saveCookie(state,Cookie){  //传多个参数一般为对象obj
+    saveCookie(state,Cookie){  //当前登录用户的Cookie
       state.loginCookie=Cookie;
     },
-    saveUserinfo(state,Userinfo){  //传多个参数一般为对象obj
+    saveUserinfo(state,Userinfo){  //当前登录用户的个人信息
       state.Userinfo=Userinfo;
     }
   },

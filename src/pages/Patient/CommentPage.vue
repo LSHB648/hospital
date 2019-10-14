@@ -9,7 +9,7 @@
 
 <script>
 /* 引入评论子组件 */
-import Comment from '../components/Comment';
+import Comment from '../../components/Comment';
 export default {
   name: 'CommentPage',
   components: {
